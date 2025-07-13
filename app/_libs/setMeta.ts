@@ -24,39 +24,101 @@ export function setMeta(meta: SiteMetadata): MetaDescriptor[] {
   const metaData: MetaDescriptor[] = [
     // 기본 메타 태그
     { title: siteTitle, },
-    { name: 'description', content: siteDescription, },
-    { name: 'keywords', content: siteKeywords, },
-    { name: 'robots', content: meta.robots || 'index, follow', },
-    { name: 'author', content: siteConfig.author.name, },
+    {
+      name: 'description',
+      content: siteDescription,
+    },
+    {
+      name: 'keywords',
+      content: siteKeywords,
+    },
+    {
+      name: 'robots',
+      content: meta.robots || 'index, follow',
+    },
+    {
+      name: 'author',
+      content: siteConfig.author.name,
+    },
 
     // Open Graph 메타 태그
-    { property: 'og:title', content: meta.title, },
-    { property: 'og:description', content: siteDescription, },
-    { property: 'og:url', content: siteUrl, },
-    { property: 'og:type', content: siteType, },
-    { property: 'og:site_name', content: siteConfig.title, },
-    { property: 'og:locale', content: 'ko_KR', },
-    { property: 'og:image', content: siteImageLink, },
-    { property: 'og:image:alt', content: siteImageAlt, },
-    { property: 'og:image:width', content: '1920', },
-    { property: 'og:image:height', content: '1080', },
+    {
+      property: 'og:title',
+      content: meta.title,
+    },
+    {
+      property: 'og:description',
+      content: siteDescription,
+    },
+    {
+      property: 'og:url',
+      content: siteUrl,
+    },
+    {
+      property: 'og:type',
+      content: siteType,
+    },
+    {
+      property: 'og:site_name',
+      content: siteConfig.title,
+    },
+    {
+      property: 'og:locale',
+      content: 'ko_KR',
+    },
+    {
+      property: 'og:image',
+      content: siteImageLink,
+    },
+    {
+      property: 'og:image:alt',
+      content: siteImageAlt,
+    },
+    {
+      property: 'og:image:width',
+      content: '1920',
+    },
+    {
+      property: 'og:image:height',
+      content: '1080',
+    },
 
     // Twitter 메타 태그
-    { name: 'twitter:card', content: 'summary_large_image', },
-    { name: 'twitter:title', content: siteTitle, },
-    { name: 'twitter:description', content: siteDescription, },
-    { name: 'twitter:image', content: siteImageLink, },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    },
+    {
+      name: 'twitter:title',
+      content: siteTitle,
+    },
+    {
+      name: 'twitter:description',
+      content: siteDescription,
+    },
+    {
+      name: 'twitter:image',
+      content: siteImageLink,
+    },
 
     // 추가 메타 태그
-    { name: 'version', content: siteConfig.version, },
-    { tagName: 'link', rel: 'canonical', href: siteUrl, },
+    {
+      name: 'version',
+      content: siteConfig.version,
+    },
+    {
+      tagName: 'link',
+      rel: 'canonical',
+      href: siteUrl,
+    },
   ];
 
   // Google 사이트 인증이 있을 경우
   if (siteConfig.googleVerfi) {
-    metaData.push(
-      { name: 'google-site-verification', content: siteConfig.googleVerfi, }
-    );
+    metaData.push({
+      name: 'google-site-verification',
+      content: siteConfig.googleVerfi,
+    });
   }
 
   // Google Analytics ID가 있을 경우
@@ -82,14 +144,12 @@ export function setMeta(meta: SiteMetadata): MetaDescriptor[] {
 
   // Google AdSense 스크립트 URL이 있을 경우
   if (siteConfig.googleAdSrc) {
-    metaData.push(
-      {
-        'script:async': {
-          src: siteConfig.googleAdSrc,
-          crossOrigin: 'anonymous',
-        },
-      }
-    );
+    metaData.push({
+      'script:async': {
+        src: siteConfig.googleAdSrc,
+        crossOrigin: 'anonymous',
+      },
+    });
   }
 
   // Schema.org JSON-LD
@@ -98,26 +158,26 @@ export function setMeta(meta: SiteMetadata): MetaDescriptor[] {
       '@context': 'https://schema.org',
       ...(siteType === 'article'
         ? {
-            '@type': 'Article',
-            'name': `${meta.title} - ${siteConfig.title}`,
-            'headline': meta.title,
-            'description': siteDescription,
-            'url': siteUrl,
-            'author': {
-              '@type': 'Person',
-              'name': siteConfig.author.name,
-              'url': siteConfig.author.url,
-            },
-            'datePublished': meta.created,
-            'dateModified': meta.updated || meta.created,
-            'image': siteImageLink,
-          }
+          '@type': 'Article',
+          'name': `${meta.title} - ${siteConfig.title}`,
+          'headline': meta.title,
+          'description': siteDescription,
+          'url': siteUrl,
+          'author': {
+            '@type': 'Person',
+            'name': siteConfig.author.name,
+            'url': siteConfig.author.url,
+          },
+          'datePublished': meta.created,
+          'dateModified': meta.updated || meta.created,
+          'image': siteImageLink,
+        }
         : {
-            '@type': 'WebSite',
-            'name': siteConfig.title,
-            'description': siteDescription,
-            'url': siteUrl,
-          }),
+          '@type': 'WebSite',
+          'name': siteConfig.title,
+          'description': siteDescription,
+          'url': siteUrl,
+        }),
     },
   });
 

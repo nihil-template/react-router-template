@@ -1,13 +1,16 @@
 export interface ApiResponse<T> {
-  data: T;
+  success: true;
+  result: T;
   status: number;
   message: string;
 }
 
 export interface ApiError {
-  data: null;
+  success: false;
+  result: null;
   status: number;
   message: string;
+  errors?: Record<string, string[] | undefined>;
 }
 
 type OpenGraphType = 'article' | 'book' | 'music.song' | 'music.album' | 'music.playlist' | 'music.radio_station' | 'profile' | 'website' | 'video.tv_show' | 'video.other' | 'video.movie' | 'video.episode';
@@ -54,6 +57,12 @@ export interface SiteConfig {
 export interface Menu {
   name: string;
   path: string;
-  icon: string;
+  icon?: string;
   children?: Menu[];
+}
+
+export interface SessionData {
+  passcode: string;
+  shieldPassed: number;
+  redirectTo?: string;
 }

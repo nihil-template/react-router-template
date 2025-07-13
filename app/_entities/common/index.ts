@@ -8,5 +8,6 @@ export type {
   ApiError,
   SiteMetadata,
   SiteConfig,
-  Menu
+  Menu,
+  SessionData
 } from './common.types';

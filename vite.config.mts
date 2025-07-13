@@ -16,7 +16,4 @@ export default defineConfig({
       include: ['buffer', 'process'],
     }),
   ],
-  ssr: {
-    noExternal: ['drizzle-orm', 'postgres', 'stream-browserify'],
-  },
 });
